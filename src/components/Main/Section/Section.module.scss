@@ -1,0 +1,28 @@
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+
+  .wrapper {
+    max-width: 1200px;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+  .showMore {
+    max-width: 150px;
+    width: 100%;
+    padding-bottom: 20px;
+
+    button {
+      width: 100%;
+      height: 50px;
+    }
+  }
+}

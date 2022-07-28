@@ -1,0 +1,16 @@
+.buttonBase {
+  background-color: black;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.2em;
+  color: white;
+  transition: background-color ease-in-out 0.4s, color ease-in-out 0.4s,
+    border ease-in-out 0.4s;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+  }
+}

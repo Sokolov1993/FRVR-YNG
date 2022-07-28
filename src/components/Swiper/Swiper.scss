@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: azure;
+
+  .wrapper {
+    max-width: 1200px;
+    box-shadow: 1px 4px 10px black;
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

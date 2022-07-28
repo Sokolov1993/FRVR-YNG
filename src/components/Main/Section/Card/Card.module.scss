@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 300px;
+  gap: 5px;
+  border: 1px solid black;
+  padding: 10px;
+
+  .titles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .count {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .image {
+    max-height: 320px;
+    margin-bottom: 5px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
