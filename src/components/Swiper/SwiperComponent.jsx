@@ -4,12 +4,11 @@ import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
+import 'swiper/scss';
+import 'swiper/scss/pagination';
+import 'swiper/scss/autoplay';
+import 'swiper/scss/effect-fade';
+import 'swiper/scss/navigation';
 
 import './SwiperComponent.scss';
 

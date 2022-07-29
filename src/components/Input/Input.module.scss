@@ -1,4 +1,14 @@
+.backDrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .form {
+  position: relative;
   display: inline-flex;
   max-width: 800px;
   width: 100%;
@@ -10,6 +20,7 @@
     border-radius: 3px;
     z-index: 0;
   }
+
   .searchBar {
     background-color: rgba(207, 197, 197, 0.329);
     padding: 10px;
@@ -19,5 +30,34 @@
     max-width: 100px;
     width: 100%;
     height: 40px;
+  }
+
+  .autocomplete {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: aliceblue;
+    max-width: 600px;
+    width: 100%;
+    z-index: 2;
+    margin-top: 2px;
+    top: 38px;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px;
+      height: 100px;
+
+      &:hover {
+        background-color: rgb(150, 152, 153);
+      }
+    }
+
+    img {
+      width: 10%;
+      height: 60%;
+    }
   }
 }
