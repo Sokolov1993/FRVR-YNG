@@ -5,6 +5,7 @@
   background-color: azure;
 
   .wrapper {
+    position: relative;
     max-width: 1200px;
     height: 600px;
     box-shadow: 1px 4px 10px black;
@@ -22,6 +23,23 @@
     .swiper-slide img {
       display: block;
       width: 100%;
+    }
+
+    .title {
+      position: absolute;
+      color: rgb(150, 197, 238);
+      font-size: 100px;
+      top: 50px;
+      // right: 135px;
+      left: 50%;
+      // transform: translateX(-50%);
+      text-shadow: 0px 4px 15px rgb(0, 0, 0);
+
+      span {
+        color: rgb(185, 50, 50);
+        font-weight: 600;
+        top: 200px;
+      }
     }
   }
 }
