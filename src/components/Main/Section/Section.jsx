@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import Button from '../../Button/Button';
-import { instance } from '../../../api';
 import Card from './Card/Card';
 
 import stylesSection from './Section.module.scss';
 
-const Section = () => {
-  const [data, setData] = useState({});
-  const [showMore, setShowMore] = useState(5);
-
-  console.log(data);
-
-  useEffect(() => {
-    instance
-      .get(``, { params: { limit: showMore } })
-      .then((data) => setData(data.data))
-      .catch((err) => console.log(err));
-  }, [showMore]);
-
-  const onClickHandler = () => {
-    setShowMore((prevState) => (prevState < 20 ? prevState + 5 : 0));
-  };
-
+const Section = ({ data, onClickHandler }) => {
   return (
     <section className={stylesSection.section}>
       <div className={stylesSection.wrapper}>

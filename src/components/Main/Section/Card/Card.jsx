@@ -16,6 +16,7 @@ const Card = ({
 }) => {
   const onChangeHandler = (event) => {
     console.log(event.target.value);
+    console.log(unicId);
   };
 
   return (

@@ -2,9 +2,10 @@ import React from 'react';
 
 import stylesSorting from './Sorting.module.scss';
 
-const Sorting = () => {
+const Sorting = ({ setFilterData }) => {
   const onChangehandler = (event) => {
     console.log(event.target.value);
+    setFilterData(event?.target?.value);
   };
 
   return (
@@ -16,11 +17,11 @@ const Sorting = () => {
           name="select"
           id="select"
         >
-          <option value="all">Show All</option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="men's clothing">Men's clothing</option>
-          <option value="women's clothing">Women's clothing</option>
+          <option value="/">Show All</option>
+          <option value="/category/electronics">Electronics</option>
+          <option value="/category/jewelery">Jewelery</option>
+          <option value="/category/men's clothing">Men's clothing</option>
+          <option value="/category/women's clothing">Women's clothing</option>
         </select>
       </div>
     </div>
