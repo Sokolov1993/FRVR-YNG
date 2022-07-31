@@ -6,6 +6,7 @@ const StoreRoutes = () => {
   return (
     <Routes>
       <Route index element={<Home />} />
+      <Route path="/products/:productId" />
     </Routes>
   );
 };

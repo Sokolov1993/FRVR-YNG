@@ -7,7 +7,7 @@ import stylesInput from './Input.module.scss';
 const Input = ({ type, theme, placeholder, btn, data, onFromSubmit }) => {
   const [inputData, setInputData] = useState([]);
   const [autocomplete, setAutocomplete] = useState([]);
-  const [showAutocomplete, setShowAutocomplete] = useState(true);
+  const [showAutocomplete, setShowAutocomplete] = useState(false);
 
   const onSubmit = (event) => {
     event.preventDefault();

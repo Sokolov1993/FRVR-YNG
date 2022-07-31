@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Slide_1 from '../../assets/images/swiper/slide_1.jpg';
 import Slide_2 from '../../assets/images/swiper/slide_2.jpg';

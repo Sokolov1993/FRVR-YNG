@@ -12,7 +12,7 @@ const Section = ({ data, onClickHandler, searchData }) => {
         {(searchData.length > 0 ? searchData : data).map((item) => (
           <Card
             key={item.id}
-            unicId={Math.random()}
+            id={item.id}
             title={item.title}
             price={item.price}
             description={item.description}

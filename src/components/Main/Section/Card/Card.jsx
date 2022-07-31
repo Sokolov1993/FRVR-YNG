@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Rating from '@mui/material/Rating';
 import GroupIcon from '@mui/icons-material/Group';
 import stylesCard from './Card.module.scss';
 
 const Card = ({
-  unicId,
   title,
   price,
   description,
@@ -13,16 +13,32 @@ const Card = ({
   image,
   rating,
   ratingCount,
+  id,
 }) => {
+  // localStorage.setItem(
+  //   `${id}`,
+  //   JSON.stringify({
+  //     ratingCount: +(Math.random() * 200).toFixed(0),
+  //     rating: +(Math.random() * 10).toFixed(0),
+  //     sumRating: ratingCount * rating,
+  //   })
+  // );
+
   const onChangeHandler = (event) => {
     console.log(event.target.value);
-    console.log(unicId);
+    console.log(id);
+
+    // const obj = JSON.parse(localStorage.getItem(`${id}`));
+    // console.log(obj);
+    // obj.ratingCount += 1;
+    // obj.sumRating += +event.target.value;
+    // localStorage.setItem(`${id}`, JSON.stringify(obj));
   };
 
   return (
     <div className={stylesCard.card}>
       <div className={stylesCard.titles}>
-        <p>{unicId}</p>
+        {/* <p>{unicId}</p> */}
         <h2>{title}</h2>
         <p>
           <strong>Price:</strong> ${price}
@@ -32,9 +48,10 @@ const Card = ({
         </p>
       </div>
 
-      <div className={stylesCard.image}>
+      <Link to={`/${id}`} className={stylesCard.image}>
         <img src={image} alt={description} />
-      </div>
+      </Link>
+
       {/* <p>{description}</p> */}
       {/* <p>{rating}</p> */}
 
