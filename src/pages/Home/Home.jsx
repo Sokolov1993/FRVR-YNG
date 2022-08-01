@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
 import { instance } from '../../api/index';
+import { BTN_CHILD_PROPS } from '../../constants/constants';
 
 import stylesHome from './Home.module.scss';
 
@@ -25,7 +27,7 @@ const Home = () => {
   }, [showMore, filterData, searchData]);
 
   const showMoreOnClickHandler = (event) => {
-    if (event.target.textContent.toLowerCase() === 'show more') {
+    if (event.target.textContent === BTN_CHILD_PROPS.showMore) {
       setShowMore((prevState) => (prevState < 20 ? prevState + 6 : 0));
     } else {
       setSearchData([]);
