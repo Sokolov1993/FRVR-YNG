@@ -14,7 +14,7 @@ const Header = ({ data, onFromSubmit, showAllItems }) => {
   return (
     <header className={stylesHeader.header}>
       <div className={stylesHeader.wrapper}>
-        <Link to={'/'} onClick={resetSearchResult}>
+        <Link to="/" onClick={resetSearchResult}>
           <h1 className={stylesHeader.title}>FOREVER YOUNG</h1>
         </Link>
         <SearchBar
@@ -26,7 +26,9 @@ const Header = ({ data, onFromSubmit, showAllItems }) => {
           onFromSubmit={onFromSubmit}
         />
         <nav className={stylesHeader.icons}>
-          <AddShoppingCartIcon />
+          <Link to="/cart">
+            <AddShoppingCartIcon />
+          </Link>
           <PermIdentityIcon />
           <FavoriteBorderIcon />
         </nav>

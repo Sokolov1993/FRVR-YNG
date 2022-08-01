@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 1200px;
+    padding: 80px 5px;
+
+    .itemImg {
+      display: inline-flex;
+      justify-content: center;
+
+      img {
+        width: 50%;
+      }
+    }
+
+    .titles {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      width: 50%;
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

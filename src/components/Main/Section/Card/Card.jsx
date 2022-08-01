@@ -5,6 +5,8 @@ import Rating from '@mui/material/Rating';
 import GroupIcon from '@mui/icons-material/Group';
 import stylesCard from './Card.module.scss';
 
+import Button from '../../../Button/Button';
+
 const Card = ({
   title,
   price,
@@ -35,6 +37,10 @@ const Card = ({
     // localStorage.setItem(`${id}`, JSON.stringify(obj));
   };
 
+  const addToTheCartHandler = () => {
+    console.log(id, 'added');
+  };
+
   return (
     <div className={stylesCard.card}>
       <div className={stylesCard.titles}>
@@ -48,22 +54,22 @@ const Card = ({
         </p>
       </div>
 
-      <Link to={`/${id}`} className={stylesCard.image}>
+      <Link to={`/products/${id}`} className={stylesCard.image}>
         <img src={image} alt={description} />
       </Link>
 
-      {/* <p>{description}</p> */}
-      {/* <p>{rating}</p> */}
-
-      <div className={stylesCard.count}>
-        <GroupIcon />
-        <span>{ratingCount}</span>
-        <Rating
-          name="half-rating"
-          defaultValue={rating}
-          precision={0.5}
-          onChange={onChangeHandler}
-        />
+      <div className={stylesCard.groupCountBtn}>
+        <div className={stylesCard.count}>
+          <GroupIcon />
+          <span>{ratingCount}</span>
+          <Rating
+            name="half-rating"
+            defaultValue={rating}
+            precision={0.5}
+            onChange={onChangeHandler}
+          />
+        </div>
+        <Button onClick={addToTheCartHandler}>Add To Cart</Button>
       </div>
     </div>
   );

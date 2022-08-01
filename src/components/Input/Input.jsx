@@ -27,6 +27,7 @@ const Input = ({ type, theme, placeholder, btn, data, onFromSubmit }) => {
 
   const searchAutocomplete = () => {
     const autocompleteArray =
+      data &&
       data.length > 0 &&
       data.filter(
         (eachItem) =>
@@ -62,7 +63,7 @@ const Input = ({ type, theme, placeholder, btn, data, onFromSubmit }) => {
         {showAutocomplete && autocomplete.length > 0 && (
           <div className={stylesInput.autocomplete}>
             {autocomplete.map((item) => (
-              <Link key={item.id} to={`/${item.id}`}>
+              <Link key={item.id} to={`/products/${item.id}`}>
                 {item.title} <img src={item.image} alt=""></img>
               </Link>
             ))}

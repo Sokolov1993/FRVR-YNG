@@ -4,12 +4,19 @@
   display: flex;
   justify-content: center;
 
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    height: 200px;
+    padding: 5px;
+  }
+
   .wrapper {
     max-width: 1200px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0px 5px;
 
     @media screen and (max-width: 600px) {
       flex-direction: column;
@@ -27,6 +34,10 @@
     display: inline-flex;
     gap: 10px;
     margin-left: 5px;
+
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
 
     svg {
       width: 30px;

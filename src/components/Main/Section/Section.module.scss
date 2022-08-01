@@ -15,6 +15,14 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 145px;
+
+    @media screen and (max-width: 1200px) {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 755px) {
+      gap: 50px;
+    }
   }
 
   .showMore {

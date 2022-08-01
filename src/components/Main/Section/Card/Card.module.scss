@@ -12,7 +12,6 @@
   transition: transform ease-in-out 0.4s, box-shadow ease-in-out 0.4s;
 
   &:hover {
-    transform: translateY(-2px);
     box-shadow: 1px 4px 14px rgba(0, 0, 0, 0.589);
   }
 
@@ -22,12 +21,21 @@
     gap: 6px;
   }
 
-  .count {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
+  .groupCountBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
+    .count {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
   .image {
     max-height: 320px;
     margin-bottom: 5px;
@@ -36,5 +44,9 @@
       height: 100%;
       width: 100%;
     }
+  }
+
+  button {
+    max-height: 23px;
   }
 }

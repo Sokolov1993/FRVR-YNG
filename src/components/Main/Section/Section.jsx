@@ -25,7 +25,7 @@ const Section = ({ data, onClickHandler, searchData }) => {
       </div>
       <div className={stylesSection.showMore}>
         <Button onClick={onClickHandler}>
-          {searchData.length > 0 ? `Show all` : `Show More`}
+          {searchData.length > 0 ? `Show All` : `Show More`}
         </Button>
       </div>
     </section>

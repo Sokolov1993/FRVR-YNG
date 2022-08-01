@@ -1,4 +1,5 @@
 import React from 'react';
+import Hamburger from 'hamburger-react';
 
 import stylesSorting from './Sorting.module.scss';
 
@@ -10,6 +11,7 @@ const Sorting = ({ setFilterData }) => {
 
   return (
     <div className={stylesSorting.container}>
+      {/* <Hamburger size={40} color="#fff" /> */}
       <div className={stylesSorting.wrapper}>
         <select
           onChange={onChangehandler}
