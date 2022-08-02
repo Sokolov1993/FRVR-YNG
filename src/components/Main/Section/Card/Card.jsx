@@ -67,7 +67,7 @@ const Card = ({
             onChange={onChangeHandler}
           />
         </div>
-        <Button onClick={addToTheCartHandler}>
+        <Button onClick={addToTheCartHandler} isSecondaryTheme={isItemInCart}>
           {isItemInCart
             ? BTN_CHILD_PROPS.deleteFromCart
             : BTN_CHILD_PROPS.addToCart}

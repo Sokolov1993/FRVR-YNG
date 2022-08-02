@@ -1,14 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux/es/exports';
 
-import stylesCart from './Cart.module.scss';
 import CartItem from '../../components/CartItem/CartItem';
+
+import stylesCart from './Cart.module.scss';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.itemsInCart);
 
   const totalEstimate = cartItems.reduce(
-    (acc, currentItem) => acc + currentItem.price,
+    (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
     0
   );
 
@@ -27,6 +28,7 @@ const Cart = () => {
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <CartItem
+                id={item.id}
                 title={item.title}
                 image={item.image}
                 price={item.price}
@@ -34,12 +36,12 @@ const Cart = () => {
               />
             ))
           ) : (
-            <h2>YOU CART IS AMPTY</h2>
+            <h2>YOU CART IS EMPTY</h2>
           )}
         </div>
         <div className={stylesCart.calc}>
           <p>
-            <strong>Estimate Total: </strong>${totalEstimate}
+            <strong>Estimate Total: </strong>${totalEstimate.toFixed(2)}
           </p>
         </div>
       </div>

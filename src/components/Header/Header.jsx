@@ -34,9 +34,11 @@ const Header = ({ data, onFromSubmit, showAllItems }) => {
         <nav className={stylesHeader.icons}>
           <Link to="/cart">
             <AddShoppingCartIcon />
-            <span className={stylesHeader.countElementsInCart}>
-              {countOfElementsInCart}
-            </span>
+            {countOfElementsInCart > 0 && (
+              <span className={stylesHeader.countElementsInCart}>
+                {countOfElementsInCart}
+              </span>
+            )}
           </Link>
           <PermIdentityIcon />
           <FavoriteBorderIcon />

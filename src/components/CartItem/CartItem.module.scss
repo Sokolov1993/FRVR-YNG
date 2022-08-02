@@ -4,7 +4,7 @@
   justify-content: space-between;
 
   .imageTitle {
-    max-width: 255px;
+    max-width: 250px;
     width: 100%;
     display: inline-flex;
     gap: 20px;
@@ -16,11 +16,31 @@
   }
 
   .quantity {
+    position: absolute;
+    left: 49.5%;
     max-width: 200px;
     width: 100%;
     display: inline-flex;
+    gap: 5px;
 
-    gap: 10px;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input {
+      width: 30px;
+      height: 20px;
+      padding-left: 9px;
+    }
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .price {
