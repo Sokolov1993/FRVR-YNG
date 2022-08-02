@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  deleteItemFromCart,
+  setItemInCart,
+} from '../../../../store/cart/cartReducer';
 
 import Rating from '@mui/material/Rating';
 import GroupIcon from '@mui/icons-material/Group';
 import stylesCard from './Card.module.scss';
 
 import Button from '../../../Button/Button';
+import { BTN_CHILD_PROPS } from '../../../../constants/constants';
 
 const Card = ({
   title,
@@ -16,35 +22,27 @@ const Card = ({
   rating,
   ratingCount,
   id,
+  allItem,
 }) => {
-  // localStorage.setItem(
-  //   `${id}`,
-  //   JSON.stringify({
-  //     ratingCount: +(Math.random() * 200).toFixed(0),
-  //     rating: +(Math.random() * 10).toFixed(0),
-  //     sumRating: ratingCount * rating,
-  //   })
-  // );
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.itemsInCart);
+  const isItemInCart = cartItems.some((item) => item.id === id);
 
   const onChangeHandler = (event) => {
     console.log(event.target.value);
     console.log(id);
-
-    // const obj = JSON.parse(localStorage.getItem(`${id}`));
-    // console.log(obj);
-    // obj.ratingCount += 1;
-    // obj.sumRating += +event.target.value;
-    // localStorage.setItem(`${id}`, JSON.stringify(obj));
   };
 
   const addToTheCartHandler = () => {
-    console.log(id, 'added');
+    // console.log(id, 'added', allItem);
+    isItemInCart
+      ? dispatch(deleteItemFromCart(id))
+      : dispatch(setItemInCart(allItem));
   };
 
   return (
     <div className={stylesCard.card}>
       <div className={stylesCard.titles}>
-        {/* <p>{unicId}</p> */}
         <h2>{title}</h2>
         <p>
           <strong>Price:</strong> ${price}
@@ -69,7 +67,11 @@ const Card = ({
             onChange={onChangeHandler}
           />
         </div>
-        <Button onClick={addToTheCartHandler}>Add To Cart</Button>
+        <Button onClick={addToTheCartHandler}>
+          {isItemInCart
+            ? BTN_CHILD_PROPS.deleteFromCart
+            : BTN_CHILD_PROPS.addToCart}
+        </Button>
       </div>
     </div>
   );

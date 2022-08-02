@@ -21,6 +21,7 @@ const Section = ({ data, onClickHandler, searchData }) => {
             image={item.image}
             rating={item.rating.rate}
             ratingCount={item.rating.count}
+            allItem={item}
           />
         ))}
       </div>
