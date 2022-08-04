@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react';
+
+import { fetchProducts } from '../../api/requests/fetchProducts/fetchProducts';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 
 import stylesInput from './Input.module.scss';
 
-const Input = ({ type, theme, placeholder, btn, data, onFromSubmit }) => {
+const Input = ({ type, theme, placeholder, btn, onFromSubmit }) => {
   const [inputData, setInputData] = useState([]);
   const [autocomplete, setAutocomplete] = useState([]);
   const [showAutocomplete, setShowAutocomplete] = useState(false);
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.fetchProducts.data);
+  // const pending = useSelector((state) => state.fetchProducts.pending);
+
+  useEffect(() => {
+    dispatch(
+      fetchProducts({
+        endpoint: `/products`,
+        paramShowMore: ``,
+      })
+    );
+  }, []);
+
+  console.log(data);
+
+  // try to use global Redux state;
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -27,6 +48,7 @@ const Input = ({ type, theme, placeholder, btn, data, onFromSubmit }) => {
 
   const searchAutocomplete = () => {
     const autocompleteArray =
+      showAutocomplete &&
       data &&
       data.length > 0 &&
       data.filter(
@@ -40,6 +62,10 @@ const Input = ({ type, theme, placeholder, btn, data, onFromSubmit }) => {
 
     // console.log(autocompleteArray);
     setAutocomplete(autocompleteArray);
+
+    if (!inputData) {
+      setShowAutocomplete(false);
+    }
   };
 
   useEffect(searchAutocomplete, [inputData]);

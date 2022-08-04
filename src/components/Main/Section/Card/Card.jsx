@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -28,9 +28,24 @@ const Card = ({
   const cartItems = useSelector((state) => state.cart.itemsInCart);
   const isItemInCart = cartItems.some((item) => item.id === id);
 
+  const [starsCount, setStarsCount] = useState(allItem?.rating?.rate);
+  const [customersRateCount, setCustomersRateCount] = useState(
+    allItem?.rating?.count
+  );
+
+  // console.log(allItem?.rating?.rate);
+
   const onChangeHandler = (event) => {
-    console.log(event.target.value);
-    console.log(id);
+    // console.log(event.target.value);
+    // console.log(id);
+    setCustomersRateCount(customersRateCount + 1);
+    setStarsCount(
+      (prevState) =>
+        (+prevState * +customersRateCount + +event.target.value) /
+        +customersRateCount
+    );
+    // console.log(starsCount);
+    // console.log(customersRateCount);
   };
 
   const addToTheCartHandler = () => {
@@ -59,10 +74,10 @@ const Card = ({
       <div className={stylesCard.groupCountBtn}>
         <div className={stylesCard.count}>
           <GroupIcon />
-          <span>{ratingCount}</span>
+          <span>{customersRateCount}</span>
           <Rating
             name="half-rating"
-            defaultValue={rating}
+            value={starsCount}
             precision={0.5}
             onChange={onChangeHandler}
           />

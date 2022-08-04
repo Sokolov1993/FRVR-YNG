@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  min-height: 82vh;
 
   .wrapper {
     display: flex;
@@ -8,13 +9,30 @@
     justify-content: space-evenly;
     max-width: 1200px;
     padding: 80px 5px;
+    gap: 10px;
 
     .itemImg {
       display: inline-flex;
       justify-content: center;
 
+      @media screen and (max-width: 900px) {
+        justify-content: flex-start;
+      }
+
       img {
         width: 50%;
+
+        @media screen and (max-width: 900px) {
+          width: 300px;
+        }
+
+        @media screen and (max-width: 600px) {
+          width: 200px;
+        }
+
+        @media screen and (max-width: 400px) {
+          width: 150px;
+        }
       }
     }
 
@@ -27,7 +45,23 @@
 
       p {
         font-size: 1.5rem;
+
+        @media screen and (max-width: 600px) {
+          font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 400px) {
+          font-size: 0.7rem;
+        }
       }
     }
   }
+}
+
+.pending {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50vh;
 }

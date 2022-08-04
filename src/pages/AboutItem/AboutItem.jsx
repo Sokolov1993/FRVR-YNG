@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { fetchProduct } from '../../api/requests/fetchProduct/fetchProduct';
+
 import Header from '../../components/Header/Header';
-import { instance } from '../../api';
+import Footer from '../../components/Footer/Footer';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import stylesAboutItem from './AboutItem.module.scss';
 
 const AboutItem = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState({});
 
-  console.log(productId);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.fetchProduct.data);
+  const pending = useSelector((state) => state.fetchProduct.pending);
+  // console.log('about item. ProductID:', productId, 'product:', product);
 
-  const fetchData = () => {
-    instance
-      .get(`/${productId}`)
-      .then((product) => setProduct(product.data))
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(product);
-  };
+  useEffect(() => {
+    dispatch(fetchProduct(productId));
+  }, [productId]);
 
-  useEffect(fetchData, []);
+  if (pending) {
+    return (
+      <div className={stylesAboutItem.pending}>
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -45,6 +51,7 @@ const AboutItem = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

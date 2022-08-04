@@ -1,4 +1,4 @@
-export const url = 'https://fakestoreapi.com/products';
+export const url = 'https://fakestoreapi.com';
 
 export const BTN_CHILD_PROPS = {
   showMore: 'Show More',

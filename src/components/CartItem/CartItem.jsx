@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux/es/exports';
 import {
   quantityIncrement,
   quantityDecrement,
@@ -10,17 +10,17 @@ import Button from '../Button/Button';
 import stylesCartItem from './CartItem.module.scss';
 
 const CartItem = ({ title, image, price, id }) => {
-  const [quantity] = useSelector((state) => state.cart.itemsInCart);
   const dispath = useDispatch();
-
-  // console.log(quantity, 'im quantity!');
+  const [counter, setCounter] = useState(1);
 
   const quantityOnincrement = () => {
     dispath(quantityIncrement(id));
+    setCounter(counter + 1);
   };
 
   const quantityOnDecrement = () => {
     dispath(quantityDecrement(id));
+    setCounter(counter - 1);
   };
 
   return (
@@ -33,14 +33,10 @@ const CartItem = ({ title, image, price, id }) => {
       </div>
 
       <div className={stylesCartItem.quantity}>
-        <Button onClick={quantityOnDecrement}>-</Button>
-        <input
-          type="number"
-          max={100}
-          step={1}
-          value={quantity.quantity}
-          readOnly
-        />
+        <Button onClick={quantityOnDecrement} disabled={counter < 1}>
+          -
+        </Button>
+        <input type="number" max={100} step={1} value={counter} readOnly />
         <Button onClick={quantityOnincrement}>+</Button>
       </div>
 

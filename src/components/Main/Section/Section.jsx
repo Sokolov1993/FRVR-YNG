@@ -1,12 +1,25 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+
 import Button from '../../Button/Button';
 import Card from './Card/Card';
 import { BTN_CHILD_PROPS } from '../../../constants/constants';
+import Pending from './Pending/Pending';
 
 import stylesSection from './Section.module.scss';
 
 const Section = ({ data, onClickHandler, searchData }) => {
+  const pending = useSelector((state) => state.fetchProducts.pending);
+
+  if (pending) {
+    return (
+      <div className={stylesSection.pending}>
+        <Pending />
+      </div>
+    );
+  }
+
   return (
     <section className={stylesSection.section}>
       <div className={stylesSection.wrapper}>

@@ -3,8 +3,10 @@
   justify-content: center;
   background-color: aliceblue;
   padding-top: 100px;
+  padding-bottom: 40vh;
 
   .wrapper {
+    position: relative;
     max-width: 1200px;
     width: 100%;
     display: flex;
@@ -36,6 +38,16 @@
 
     .calc {
       color: #fff;
+    }
+
+    .cartItemBtn {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+
+      button {
+        padding: 5px;
+      }
     }
   }
 }

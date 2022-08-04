@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { fetchProducts } from '../../api/requests/fetchProducts/fetchProducts';
 
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
-import { instance } from '../../api/index';
 import { BTN_CHILD_PROPS } from '../../constants/constants';
+import Footer from '../../components/Footer/Footer';
 
 import stylesHome from './Home.module.scss';
 
 const Home = () => {
-  const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [showMore, setShowMore] = useState(6);
   const [filterData, setFilterData] = useState('');
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.fetchProducts.data);
+
+  // console.log('products, panding', data, pending);
 
   const onSearchResult = (searchData) => {
     console.log(searchData);
     setSearchData(searchData);
   };
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
-    instance
-      .get(`${filterData && filterData}`, { params: { limit: showMore } })
-      .then((data) => setData(data.data))
-      .catch((err) => console.log(err));
+    dispatch(
+      fetchProducts({
+        endpoint: `/products${filterData && filterData}`,
+        paramShowMore: `${showMore}`,
+      })
+    );
   }, [showMore, filterData, searchData]);
 
   const showMoreOnClickHandler = (event) => {
@@ -37,9 +45,9 @@ const Home = () => {
   return (
     <div>
       <Header
-        data={data}
         onFromSubmit={onSearchResult}
         showAllItems={setSearchData}
+        data={data}
       />
       <Main
         showMoreOnClickHandler={showMoreOnClickHandler}
@@ -47,6 +55,7 @@ const Home = () => {
         searchData={searchData}
         setFilterData={setFilterData}
       />
+      <Footer />
     </div>
   );
 };

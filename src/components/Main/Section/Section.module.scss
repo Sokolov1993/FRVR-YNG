@@ -36,3 +36,18 @@
     }
   }
 }
+
+.pending {
+  div {
+    span {
+      @media screen and (max-width: 1200px) {
+        justify-content: center;
+        margin-left: 20%;
+      }
+
+      @media screen and (max-width: 980px) {
+        display: none;
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ const cartSlice = createSlice({
         quantity: 1,
       };
       state.itemsInCart.push(extendedItem);
-      // console.log(extendedItem);
+      console.log(extendedItem);
     },
 
     deleteItemFromCart: (state, action) => {
