@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import { fetchProducts } from '../../api/requests/fetchProducts/fetchProducts';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { setSearchData } from '../../store/searchData/searchDataSlice';
 
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 
 import stylesInput from './Input.module.scss';
 
-const Input = ({ type, theme, placeholder, btn, onFromSubmit }) => {
+const Input = ({ type, theme, placeholder, onFormSubmit }) => {
   const [inputData, setInputData] = useState([]);
   const [autocomplete, setAutocomplete] = useState([]);
   const [showAutocomplete, setShowAutocomplete] = useState(false);
@@ -32,7 +33,8 @@ const Input = ({ type, theme, placeholder, btn, onFromSubmit }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    onFromSubmit(autocomplete);
+    onFormSubmit && onFormSubmit(autocomplete);
+    dispatch(setSearchData(autocomplete));
     setInputData('');
     setShowAutocomplete(false);
   };
@@ -84,8 +86,9 @@ const Input = ({ type, theme, placeholder, btn, onFromSubmit }) => {
           className={`${stylesInput.input} ${theme && stylesInput[theme]}`}
           type={type}
           placeholder={placeholder}
+          required
         ></input>
-        {btn && <Button className={stylesInput.button}>Search</Button>}
+        <Button className={stylesInput.button}>Search</Button>
         {showAutocomplete && autocomplete.length > 0 && (
           <div className={stylesInput.autocomplete}>
             {autocomplete.map((item) => (

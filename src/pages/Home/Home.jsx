@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <div>
       <Header
-        onFromSubmit={onSearchResult}
+        onFormSubmit={onSearchResult}
         showAllItems={setSearchData}
         data={data}
       />

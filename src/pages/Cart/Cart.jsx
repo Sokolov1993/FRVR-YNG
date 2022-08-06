@@ -20,7 +20,7 @@ const Cart = () => {
 
   return (
     <>
-      <Header />
+      <Header isSearchHide />
       <div className={stylesCart.container}>
         <div className={stylesCart.wrapper}>
           <div className={stylesCart.title}>

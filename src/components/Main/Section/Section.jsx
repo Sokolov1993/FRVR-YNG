@@ -9,7 +9,7 @@ import Pending from './Pending/Pending';
 
 import stylesSection from './Section.module.scss';
 
-const Section = ({ data, onClickHandler, searchData }) => {
+const Section = ({ data, onClickHandler, searchData, isBtnHide }) => {
   const pending = useSelector((state) => state.fetchProducts.pending);
 
   if (pending) {
@@ -39,11 +39,13 @@ const Section = ({ data, onClickHandler, searchData }) => {
         ))}
       </div>
       <div className={stylesSection.showMore}>
-        <Button onClick={onClickHandler}>
-          {searchData.length > 0
-            ? BTN_CHILD_PROPS.showAll
-            : BTN_CHILD_PROPS.showMore}
-        </Button>
+        {!isBtnHide && (
+          <Button onClick={onClickHandler}>
+            {searchData.length > 0
+              ? BTN_CHILD_PROPS.showAll
+              : BTN_CHILD_PROPS.showMore}
+          </Button>
+        )}
       </div>
     </section>
   );

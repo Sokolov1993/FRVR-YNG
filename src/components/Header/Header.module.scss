@@ -62,5 +62,21 @@
         cursor: pointer;
       }
     }
+
+    .loggedIn {
+      position: absolute;
+      text-align: center;
+      height: 20px;
+      width: 44px;
+      bottom: -17.5px;
+      right: 33px;
+      background-color: #09ff5344;
+      border-radius: 4px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #09ff53a4;
+      }
+    }
   }
 }
