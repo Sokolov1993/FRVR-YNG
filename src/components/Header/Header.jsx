@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import SearchBar from '../Input/Input';
 
@@ -8,9 +8,10 @@ import {
   isOpenAuthForm,
   logOut,
 } from '../../api/requests/logIn/fetchLogInSlice';
+import { openFavModal } from '../../store/favorites/favoritesSlice';
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import PortraitIcon from '@mui/icons-material/Portrait';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import stylesHeader from './Header.module.scss';
 
@@ -22,6 +23,10 @@ const Header = ({ data, onFormSubmit, showAllItems, isSearchHide }) => {
     (state) => state.cart.itemsInCart.length
   );
 
+  const countOfElementsInFav = useSelector(
+    (state) => state.favorites.favorites.length
+  );
+
   const resetSearchResult = () => {
     showAllItems([]);
   };
@@ -31,8 +36,13 @@ const Header = ({ data, onFormSubmit, showAllItems, isSearchHide }) => {
     dispatch(isOpenAuthForm(true));
   };
 
-  const onLogOut = (event) => {
+  const onLogOut = () => {
     dispatch(logOut());
+  };
+
+  const onOpenFavorites = () => {
+    console.log('open favorites');
+    dispatch(openFavModal(true));
   };
 
   return (
@@ -60,14 +70,21 @@ const Header = ({ data, onFormSubmit, showAllItems, isSearchHide }) => {
             )}
           </Link>
           <div onClick={onOpenLogInForm}>
-            <PermIdentityIcon />
+            <PortraitIcon />
           </div>
           {token && (
             <div onClick={onLogOut} className={stylesHeader.loggedIn}>
               Log Out
             </div>
           )}
-          <FavoriteBorderIcon />
+          <div onClick={onOpenFavorites}>
+            <FavoriteBorderIcon />
+            {countOfElementsInFav > 0 && (
+              <span className={stylesHeader.countElementsInFav}>
+                {countOfElementsInFav}
+              </span>
+            )}
+          </div>
         </nav>
       </div>
     </header>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { fetchProducts } from '../../api/requests/fetchProducts/fetchProducts';
+import { fetchProductsForAutocomplete } from '../../api/requests/fetchProductsForAutocomplete/fetchProductsForAutocomplete';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { setSearchData } from '../../store/searchData/searchDataSlice';
 
@@ -10,26 +10,12 @@ import Button from '../Button/Button';
 import stylesInput from './Input.module.scss';
 
 const Input = ({ type, theme, placeholder, onFormSubmit }) => {
-  const [inputData, setInputData] = useState([]);
+  const [inputData, setInputData] = useState('');
   const [autocomplete, setAutocomplete] = useState([]);
   const [showAutocomplete, setShowAutocomplete] = useState(false);
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.fetchProducts.data);
-  // const pending = useSelector((state) => state.fetchProducts.pending);
-
-  useEffect(() => {
-    dispatch(
-      fetchProducts({
-        endpoint: `/products`,
-        paramShowMore: ``,
-      })
-    );
-  }, []);
-
-  console.log(data);
-
-  // try to use global Redux state;
+  const data = useSelector((state) => state.fetchForAutocomplete.data);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -62,7 +48,6 @@ const Input = ({ type, theme, placeholder, onFormSubmit }) => {
           eachItem.category.toLowerCase().includes(inputData.toLowerCase())
       );
 
-    // console.log(autocompleteArray);
     setAutocomplete(autocompleteArray);
 
     if (!inputData) {
@@ -72,7 +57,9 @@ const Input = ({ type, theme, placeholder, onFormSubmit }) => {
 
   useEffect(searchAutocomplete, [inputData]);
 
-  // console.log(inputData);
+  useEffect(() => {
+    dispatch(fetchProductsForAutocomplete('/products'));
+  }, []);
 
   return (
     <>
@@ -89,7 +76,7 @@ const Input = ({ type, theme, placeholder, onFormSubmit }) => {
           required
         ></input>
         <Button className={stylesInput.button}>Search</Button>
-        {showAutocomplete && autocomplete.length > 0 && (
+        {showAutocomplete && autocomplete?.length > 0 && (
           <div className={stylesInput.autocomplete}>
             {autocomplete.map((item) => (
               <Link key={item.id} to={`/products/${item.id}`}>

@@ -1,25 +1,32 @@
 import React from 'react';
+
 import { useSelector } from 'react-redux/es/exports';
 
 import Header from '../../components/Header/Header';
 import CartItem from '../../components/CartItem/CartItem';
 import Button from '../../components/Button/Button';
 
-import stylesCart from './Cart.module.scss';
 import Footer from '../../components/Footer/Footer';
+import LoginForm from '../../components/LoginForm/LoginForm';
+
+import stylesCart from './Cart.module.scss';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.itemsInCart);
+  const isOpenAuthForm = useSelector(
+    (state) => state.fetchLogIn.isOpenAuthForm
+  );
 
   const totalEstimate = cartItems.reduce(
     (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
     0
   );
 
-  console.log('Cart', cartItems);
+  // console.log('Cart', cartItems);
 
   return (
     <>
+      {isOpenAuthForm && <LoginForm />}
       <Header isSearchHide />
       <div className={stylesCart.container}>
         <div className={stylesCart.wrapper}>
@@ -40,6 +47,7 @@ const Cart = () => {
                   image={item.image}
                   price={item.price}
                   key={item.id}
+                  quantity={item?.quantity}
                 />
               ))
             ) : (

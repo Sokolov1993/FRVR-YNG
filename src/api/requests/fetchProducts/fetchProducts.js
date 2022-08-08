@@ -9,7 +9,6 @@ export const fetchProducts = createAsyncThunk(
       .get(endpoint.endpoint, { params: { limit: endpoint.paramShowMore } })
       .then((res) => res.data);
 
-    console.log('fetchProducts', data);
     return data;
   }
 );

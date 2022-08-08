@@ -8,14 +8,14 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import stylesBurgerMenu from './BurgerMenu.module.scss';
 
-const BurgerMenu = () => {
+const BurgerMenu = ({ isDarkTheme }) => {
   const [isBurgerOpen, setBurgerOpen] = useState(false);
 
   return (
     <div className={stylesBurgerMenu.burger}>
       <Hamburger
         size={40}
-        color="#fff"
+        color={isDarkTheme ? '#000' : '#fff'}
         label="Show menu"
         toggled={isBurgerOpen}
         toggle={setBurgerOpen}

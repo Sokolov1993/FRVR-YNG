@@ -1,0 +1,62 @@
+.container {
+  position: absolute;
+  z-index: 4;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.322);
+
+  .wrapper {
+    position: relative;
+    max-width: 600px;
+    min-height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: aliceblue;
+    text-align: center;
+    box-shadow: 1px 5px 8px black;
+
+    .closeIcon {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .item {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5px;
+      background-color: white;
+    }
+
+    .image {
+      display: flex;
+      max-width: 230px;
+      height: 50px;
+      gap: 15px;
+
+      image {
+        width: 100%;
+      }
+
+      .button {
+        margin-top: 5px;
+
+        button {
+          width: 70px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}

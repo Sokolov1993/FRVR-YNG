@@ -6,7 +6,7 @@ import stylesSorting from './Sorting.module.scss';
 
 const Sorting = ({ setFilterData }) => {
   const onChangehandler = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setFilterData(event?.target?.value);
   };
 

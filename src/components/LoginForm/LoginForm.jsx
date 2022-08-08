@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Button from '../Button/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLogIn } from '../../api/requests/logIn/fetchLogIn';
-import {
-  isOpenAuthForm,
-  isLoggedIn,
-} from '../../api/requests/logIn/fetchLogInSlice';
+import { isOpenAuthForm } from '../../api/requests/logIn/fetchLogInSlice';
 
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -21,9 +18,13 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [inputType, setInputType] = useState('password');
   const [wrongValue, setWrongValue] = useState(false);
+  const [onClose, setOnClose] = useState(false);
 
   const dispatch = useDispatch();
   const token = useSelector((state) => state.fetchLogIn.token);
+
+  const form = useRef();
+  const closeBtn = useRef();
 
   const onShowPassword = () => {
     if (!showPassword) {
@@ -43,13 +44,19 @@ const LoginForm = () => {
     setPasswordValue(event.target.value.trim());
   };
 
-  const onCloseForm = () => {
-    dispatch(isOpenAuthForm(false));
+  const onCloseForm = (event) => {
+    if (
+      !form.current.contains(event.target) ||
+      closeBtn.current.contains(event.target)
+    ) {
+      event.stopPropagation();
+      dispatch(isOpenAuthForm(false));
+    }
   };
 
   const onLogInFormSubmit = (event) => {
     event.preventDefault();
-    console.log('Work!');
+    // console.log('Work!');
     const formData = new FormData(event.target);
     const login = formData.get('login');
     const password = formData.get('password');
@@ -66,66 +73,79 @@ const LoginForm = () => {
     setPasswordValue('');
   };
 
-  if (token) {
+  if (token && !onClose) {
     return (
       <div>
-        <Alert severity="success">You Are Succesfully Logged In!</Alert>
+        <Alert
+          onClose={() => {
+            setOnClose(true);
+          }}
+          severity="success"
+        >
+          You Are Succesfully Logged In!
+        </Alert>
       </div>
     );
   }
 
   return (
-    <div className={stylesLoginForm.container}>
-      <form className={stylesLoginForm.wrapper} onSubmit={onLogInFormSubmit}>
-        <div onClick={onCloseForm}>
-          <CloseIcon />
-        </div>
-        <h2 className={stylesLoginForm.title}>Log In</h2>
-        {wrongValue && (
-          <p className={stylesLoginForm.wrongpass}>
-            You entered wrong login or password!
-          </p>
-        )}
-        <div className={stylesLoginForm.input}>
-          <input
-            type="name"
-            name="login"
-            placeholder="Enter Your Name"
-            autoComplete="on"
-            value={nameValue}
-            onChange={onNameChange}
-            required
-          />
-          <input
-            className={stylesLoginForm.passwordField}
-            type={inputType}
-            name="password"
-            placeholder="Enter Your Password"
-            autoComplete="on"
-            value={passwordValue}
-            onChange={onPasswordChange}
-            required
-          />
-          {!showPassword && (
-            <span
-              className={stylesLoginForm.showPassword}
-              onClick={onShowPassword}
-            >
-              <VisibilityIcon />
-            </span>
+    !token && (
+      <div className={stylesLoginForm.container} onClick={onCloseForm}>
+        <form
+          className={stylesLoginForm.wrapper}
+          onSubmit={onLogInFormSubmit}
+          ref={form}
+        >
+          <div onClick={onCloseForm} ref={closeBtn}>
+            <CloseIcon />
+          </div>
+          <h2 className={stylesLoginForm.title}>Log In</h2>
+          {wrongValue && (
+            <p className={stylesLoginForm.wrongpass}>
+              You entered wrong login or password!
+            </p>
           )}
-          {showPassword && (
-            <span
-              className={stylesLoginForm.showPassword}
-              onClick={onShowPassword}
-            >
-              <VisibilityOffIcon />
-            </span>
-          )}
-        </div>
-        <Button>Log In</Button>
-      </form>
-    </div>
+          <div className={stylesLoginForm.input}>
+            <input
+              type="name"
+              name="login"
+              placeholder="Enter Your Name"
+              autoComplete="on"
+              value={nameValue}
+              onChange={onNameChange}
+              required
+            />
+            <input
+              className={stylesLoginForm.passwordField}
+              type={inputType}
+              name="password"
+              placeholder="Enter Your Password"
+              autoComplete="on"
+              value={passwordValue}
+              onChange={onPasswordChange}
+              required
+            />
+            {!showPassword && (
+              <span
+                className={stylesLoginForm.showPassword}
+                onClick={onShowPassword}
+              >
+                <VisibilityIcon />
+              </span>
+            )}
+            {showPassword && (
+              <span
+                className={stylesLoginForm.showPassword}
+                onClick={onShowPassword}
+              >
+                <VisibilityOffIcon />
+              </span>
+            )}
+          </div>
+          <Button>Log In</Button>
+        </form>
+      </div>
+    )
   );
 };
 
