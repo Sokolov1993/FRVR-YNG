@@ -26,10 +26,32 @@
     width: 83%;
     border: 1px solid;
     border-radius: 3px;
-    z-index: 0;
+    animation: elementGrow ease-in-out 0.4s;
 
     @media screen and (max-width: 600px) {
       width: 95%;
+    }
+
+    @keyframes elementGrow {
+      0% {
+        width: 0%;
+      }
+
+      25% {
+        width: 25%;
+      }
+
+      50% {
+        width: 50%;
+      }
+
+      75% {
+        width: 75%;
+      }
+
+      98% {
+        width: 80%;
+      }
     }
   }
 
@@ -70,6 +92,7 @@
       justify-content: space-between;
       padding: 5px;
       height: 100px;
+      transition: background-color ease-in-out 0.1s;
 
       &:hover {
         background-color: rgb(150, 152, 153);

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  min-height: 82vh;
+  min-height: 92vh;
 
   .wrapper {
     display: flex;
@@ -13,6 +13,25 @@
 
     .itemImg {
       display: flex;
+      animation: imgShow ease-in-out 0.4s;
+
+      @keyframes imgShow {
+        0% {
+          transform: translateX(-100vw);
+        }
+        25% {
+          transform: translateX(-75vw);
+        }
+        50% {
+          transform: translateX(-50vw);
+        }
+        75% {
+          transform: translateX(-25vw);
+        }
+        100% {
+          transform: translateX(-0vw);
+        }
+      }
 
       @media screen and (max-width: 900px) {
         justify-content: flex-start;
@@ -41,6 +60,25 @@
       justify-content: center;
       gap: 20px;
       width: 50%;
+      animation: titleShow ease-in-out 0.4s;
+
+      @keyframes titleShow {
+        0% {
+          transform: translateX(100vw);
+        }
+        25% {
+          transform: translateX(75vw);
+        }
+        50% {
+          transform: translateX(50vw);
+        }
+        75% {
+          transform: translateX(25vw);
+        }
+        100% {
+          transform: translateX(0vw);
+        }
+      }
 
       p {
         font-size: 1.5rem;

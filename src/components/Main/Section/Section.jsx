@@ -9,6 +9,9 @@ import Pending from './Pending/Pending';
 
 import stylesSection from './Section.module.scss';
 
+import { ParallaxProvider } from 'react-scroll-parallax';
+import ParallaxComponent from '../../Parallax/Parallax';
+
 const Section = ({ data, onClickHandler, searchData, isBtnHide }) => {
   const pending = useSelector((state) => state.fetchProducts.pending);
 
@@ -23,6 +26,9 @@ const Section = ({ data, onClickHandler, searchData, isBtnHide }) => {
   return (
     <section className={stylesSection.section}>
       <div className={stylesSection.wrapper}>
+        <ParallaxProvider>
+          <ParallaxComponent />
+        </ParallaxProvider>
         {(searchData.length > 0 ? searchData : data).map((item) => (
           <Card
             key={item.id}
