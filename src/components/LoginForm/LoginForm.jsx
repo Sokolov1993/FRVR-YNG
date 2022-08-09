@@ -56,7 +56,6 @@ const LoginForm = () => {
 
   const onLogInFormSubmit = (event) => {
     event.preventDefault();
-    // console.log('Work!');
     const formData = new FormData(event.target);
     const login = formData.get('login');
     const password = formData.get('password');
@@ -66,7 +65,9 @@ const LoginForm = () => {
     if (token) {
       dispatch(isOpenAuthForm(false));
     } else if (!token) {
-      setWrongValue(true);
+      setTimeout(() => {
+        setWrongValue(true);
+      }, 2000);
     }
 
     setNameValue('');
@@ -74,6 +75,10 @@ const LoginForm = () => {
   };
 
   if (token && !onClose) {
+    setTimeout(() => {
+      setOnClose(true);
+    }, 7000);
+
     return (
       <div>
         <Alert

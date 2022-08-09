@@ -11,6 +11,5 @@ export const fetchLogIn = createAsyncThunk('auth/fetchLogIn', (endpoint) => {
     .catch((err) => {
       console.log(err);
     });
-  //   console.log(token);
   return token;
 });

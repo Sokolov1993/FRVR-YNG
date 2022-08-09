@@ -27,29 +27,23 @@ const Card = ({
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.itemsInCart);
   const isItemInCart = cartItems.some((item) => item.id === id);
+  const token = useSelector((state) => state.fetchLogIn.token);
 
   const [starsCount, setStarsCount] = useState(allItem?.rating?.rate);
   const [customersRateCount, setCustomersRateCount] = useState(
     allItem?.rating?.count
   );
 
-  // console.log(allItem?.rating?.rate);
-
   const onChangeHandler = (event) => {
-    // console.log(event.target.value);
-    // console.log(id);
     setCustomersRateCount(customersRateCount + 1);
     setStarsCount(
       (prevState) =>
         (+prevState * +customersRateCount + +event.target.value) /
         +customersRateCount
     );
-    // console.log(starsCount);
-    // console.log(customersRateCount);
   };
 
   const addToTheCartHandler = () => {
-    // console.log(id, 'added', allItem);
     isItemInCart
       ? dispatch(deleteItemFromCart(id))
       : dispatch(setItemInCart(allItem));
@@ -82,11 +76,15 @@ const Card = ({
             onChange={onChangeHandler}
           />
         </div>
-        <Button onClick={addToTheCartHandler} isSecondaryTheme={isItemInCart}>
-          {isItemInCart
-            ? BTN_CHILD_PROPS.deleteFromCart
-            : BTN_CHILD_PROPS.addToCart}
-        </Button>
+        {token ? (
+          <Button onClick={addToTheCartHandler} isSecondaryTheme={isItemInCart}>
+            {isItemInCart
+              ? BTN_CHILD_PROPS.deleteFromCart
+              : BTN_CHILD_PROPS.addToCart}
+          </Button>
+        ) : (
+          <Button disabled>{BTN_CHILD_PROPS.loginToBuy}</Button>
+        )}
       </div>
     </div>
   );

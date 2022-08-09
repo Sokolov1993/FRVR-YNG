@@ -60,5 +60,19 @@
         top: 200px;
       }
     }
+
+    .swiper-button-prev {
+      color: black;
+    }
+
+    .swiper-button-next {
+      color: black;
+    }
+
+    .swiper-pagination {
+      span {
+        background-color: black;
+      }
+    }
   }
 }

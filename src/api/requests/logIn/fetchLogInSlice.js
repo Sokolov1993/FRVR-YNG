@@ -17,14 +17,14 @@ const fetchLogInSlice = createSlice({
 
     logOut: (state) => {
       state.token = null;
-      localStorage.clear();
+      localStorage.removeItem('token');
+      localStorage.removeItem('cartItems');
       state.isOpenAuthForm = false;
     },
   },
 
   extraReducers: {
     [fetchLogIn.fulfilled]: (state, action) => {
-      console.log(action.payload);
       if (action.payload) {
         state.token = action.payload.token;
         localStorage.setItem('token', action.payload.token);

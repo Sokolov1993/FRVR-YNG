@@ -34,28 +34,23 @@ const AboutItem = () => {
   const cartItems = useSelector((state) => state.cart.itemsInCart);
   const isItemInCart = cartItems.some((item) => item.id === +productId);
 
+  const token = useSelector((state) => state.fetchLogIn.token);
+
   const isOpenAuthForm = useSelector(
     (state) => state.fetchLogIn.isOpenAuthForm
   );
 
   const isOpenFavModal = useSelector((state) => state.favorites.openFavModal);
 
-  // console.log('Fav Open?', isOpenFavModal);
-
-  // console.log(`product`, product);
-
   const addToTheCartHandler = () => {
-    // console.log(id, 'added', allItem);
     isItemInCart
       ? dispatch(deleteItemFromCart(+productId))
       : dispatch(setItemInCart(product));
   };
 
   const addToTheFavHandler = () => {
-    // console.log(product);
     dispatch(addToFavorites(product));
   };
-  // console.log('about item. ProductID:', productId, 'product:', product);
 
   useEffect(() => {
     dispatch(fetchProduct(productId));
@@ -96,14 +91,18 @@ const AboutItem = () => {
                 <strong>Description:</strong> {product.description}
               </p>
               <div className={stylesAboutItem.buttons}>
-                <Button
-                  onClick={addToTheCartHandler}
-                  isSecondaryTheme={isItemInCart}
-                >
-                  {isItemInCart
-                    ? BTN_CHILD_PROPS.deleteFromCart
-                    : BTN_CHILD_PROPS.addToCart}
-                </Button>
+                {token ? (
+                  <Button
+                    onClick={addToTheCartHandler}
+                    isSecondaryTheme={isItemInCart}
+                  >
+                    {isItemInCart
+                      ? BTN_CHILD_PROPS.deleteFromCart
+                      : BTN_CHILD_PROPS.addToCart}
+                  </Button>
+                ) : (
+                  <Button disabled>{BTN_CHILD_PROPS.loginToBuy}</Button>
+                )}
                 <div
                   className={stylesAboutItem.favButton}
                   onClick={addToTheFavHandler}

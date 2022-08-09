@@ -8,7 +8,9 @@ const Button = ({ children, onClick, isSecondaryTheme, disabled }) => {
       disabled={disabled}
       onClick={onClick}
       className={
-        isSecondaryTheme ? stylesButton.secondary : stylesButton.buttonBase
+        isSecondaryTheme
+          ? stylesButton.secondary
+          : `${stylesButton.buttonBase}${disabled ? '--disabled' : ''}`
       }
     >
       {children}

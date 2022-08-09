@@ -22,8 +22,6 @@ const Cart = () => {
     0
   );
 
-  // console.log('Cart', cartItems);
-
   return (
     <>
       {isOpenAuthForm && <LoginForm />}

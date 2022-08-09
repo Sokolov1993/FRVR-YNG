@@ -5,4 +5,5 @@ export const BTN_CHILD_PROPS = {
   showAll: 'Show All',
   deleteFromCart: 'Delete From Cart',
   addToCart: 'Add To Cart',
+  loginToBuy: 'Login To Buy',
 };

@@ -14,8 +14,6 @@ const Favorites = () => {
   const favoritesData = useSelector((state) => state.favorites.favorites);
   const isFavModalOpen = useSelector((state) => state.favorites.openFavModal);
 
-  console.log(favoritesData);
-
   const onCloseFavoritesModal = () => {
     dispatch(openFavModal(false));
   };
@@ -34,12 +32,12 @@ const Favorites = () => {
           >
             <CloseIcon />
           </div>
-          <h1>Wish List</h1>
+          <h2>Wish List</h2>
           {favoritesData.length > 0 ? (
             favoritesData.map((item) => (
               <div key={item.id} className={stylesFavorites.item}>
                 <div className={stylesFavorites.titles}>
-                  <h2>{item.title}</h2>
+                  <h3>{item.title}</h3>
                 </div>
                 <div className={stylesFavorites.image}>
                   <img src={item.image} alt={item.description} />
@@ -57,7 +55,7 @@ const Favorites = () => {
               </div>
             ))
           ) : (
-            <h2>You favorites is empty!</h2>
+            <h2>IS EMPTY</h2>
           )}
         </div>
       </div>

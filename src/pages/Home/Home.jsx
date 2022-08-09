@@ -17,13 +17,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.fetchProducts.data);
 
-  // console.log('products, panding', data, pending);
-
   const onSearchResult = (searchData) => {
-    console.log(searchData);
     setSearchData(searchData);
   };
-  // console.log(data);
 
   useEffect(() => {
     dispatch(

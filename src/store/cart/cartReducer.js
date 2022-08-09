@@ -14,7 +14,6 @@ const cartSlice = createSlice({
       };
       state.itemsInCart.push(extendedItem);
       localStorage.setItem('cartItems', JSON.stringify(state.itemsInCart));
-      console.log(extendedItem);
     },
 
     deleteItemFromCart: (state, action) => {

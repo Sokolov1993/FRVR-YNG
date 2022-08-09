@@ -32,7 +32,6 @@ const Header = ({ data, onFormSubmit, showAllItems, isSearchHide }) => {
   };
 
   const onOpenLogInForm = () => {
-    console.log('open form');
     dispatch(isOpenAuthForm(true));
   };
 
@@ -41,7 +40,6 @@ const Header = ({ data, onFormSubmit, showAllItems, isSearchHide }) => {
   };
 
   const onOpenFavorites = () => {
-    console.log('open favorites');
     dispatch(openFavModal(true));
   };
 
@@ -61,14 +59,16 @@ const Header = ({ data, onFormSubmit, showAllItems, isSearchHide }) => {
           />
         )}
         <nav className={stylesHeader.icons}>
-          <Link to="/cart">
-            <AddShoppingCartIcon />
-            {countOfElementsInCart > 0 && (
-              <span className={stylesHeader.countElementsInCart}>
-                {countOfElementsInCart}
-              </span>
-            )}
-          </Link>
+          {token && (
+            <Link to="/cart">
+              <AddShoppingCartIcon />
+              {countOfElementsInCart > 0 && (
+                <span className={stylesHeader.countElementsInCart}>
+                  {countOfElementsInCart}
+                </span>
+              )}
+            </Link>
+          )}
           <div onClick={onOpenLogInForm}>
             <PortraitIcon />
           </div>
